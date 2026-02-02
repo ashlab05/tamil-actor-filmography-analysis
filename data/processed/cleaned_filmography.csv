@@ -1,0 +1,141 @@
+Actor,Year,Film,Role,Debut_Year,Lead_Debut_Year,Career_Span,Career_Phase,Cumulative_Movies,Movies_Per_Year,Release_Gap,High_Productivity,Is_Special,Age_At_Film,Age_At_Debut,Current_Age,Is_Child_Role,Is_Upcoming
+Ajith,1990,En Veedu En Kanavar,School boy,1990,1993,36,Early,1,1,0,false,false,19,19,55,true,false
+Ajith,1993,Amaravathi,Arjun,1990,1993,36,Early,2,2,3,true,true,22,19,55,false,false
+Ajith,1993,Prema Pusthakam,Sreekar,1990,1993,36,Early,3,2,0,true,false,22,19,55,false,false
+Ajith,1994,Paasamalargal,Kumar,1990,1993,36,Early,4,2,1,true,false,23,19,55,false,false
+Ajith,1994,Pavithra,Ashok,1990,1993,36,Early,5,2,0,true,false,23,19,55,false,false
+Ajith,1995,Rajavin Parvaiyile,Chandru,1990,1993,36,Early,6,2,1,true,false,24,19,55,false,false
+Ajith,1995,Aasai,Jeevanantham,1990,1993,36,Early,7,2,0,true,false,24,19,55,false,false
+Ajith,1996,Vaanmathi,Krishna,1990,1993,36,Growth,8,4,1,true,false,25,19,55,false,false
+Ajith,1996,Kalloori Vaasal,Vasanth,1990,1993,36,Growth,9,4,0,true,false,25,19,55,false,false
+Ajith,1996,Minor Mappillai,Ramu,1990,1993,36,Growth,10,4,0,true,false,25,19,55,false,false
+Ajith,1996,Kadhal Kottai,Surya,1990,1993,36,Growth,11,4,0,true,false,25,19,55,false,false
+Ajith,1997,Nesam,Ranganathan,1990,1993,36,Growth,12,5,1,true,false,26,19,55,false,false
+Ajith,1997,Raasi,Kumar,1990,1993,36,Growth,13,5,0,true,false,26,19,55,false,false
+Ajith,1997,Ullaasam,Guru,1990,1993,36,Growth,14,5,0,true,true,26,19,55,false,false
+Ajith,1997,Pagaivan,Prabhu,1990,1993,36,Growth,15,5,0,true,false,26,19,55,false,false
+Ajith,1997,Rettai Jadai Vayasu,Vijay,1990,1993,36,Growth,16,5,0,true,false,26,19,55,false,false
+Ajith,1998,Kaadhal Mannan,Shiva,1990,1993,36,Growth,17,4,1,true,false,27,19,55,false,false
+Ajith,1998,Aval Varuvala,Jeeva,1990,1993,36,Growth,18,4,0,true,false,27,19,55,false,false
+Ajith,1998,Unnidathil Ennai Koduthen,Sanjay,1990,1993,36,Growth,19,4,0,true,true,27,19,55,false,false
+Ajith,1998,Uyirodu Uyiraga,Ajay,1990,1993,36,Growth,20,4,0,true,false,27,19,55,false,false
+Ajith,1999,Thodarum,Jayaram,1990,1993,36,Growth,21,6,1,true,false,28,19,55,false,false
+Ajith,1999,Unnai Thedi,Raghu,1990,1993,36,Growth,22,6,0,true,false,28,19,55,false,false
+Ajith,1999,Vaalee,Shiva/Deva,1990,1993,36,Growth,23,6,0,true,true,28,19,55,false,false
+Ajith,1999,Anantha Poongatre,Jeeva,1990,1993,36,Growth,24,6,0,true,false,28,19,55,false,false
+Ajith,1999,Amarkkalam,Vasu,1990,1993,36,Growth,25,6,0,true,true,28,19,55,false,false
+Ajith,1999,Nee Varuvai Ena,Subramani,1990,1993,36,Growth,26,6,0,true,true,28,19,55,false,false
+Ajith,2000,Mugavaree,Sridhar,1990,1993,36,Growth,27,3,1,true,false,29,19,55,false,false
+Ajith,2000,Kandukondain Kandukondain,Manohar,1990,1993,36,Growth,28,3,0,true,false,29,19,55,false,false
+Ajith,2000,Unnai Kodu Ennai Tharuven,Surya,1990,1993,36,Growth,29,3,0,true,false,29,19,55,false,false
+Ajith,2001,Dheena,Dheenadhayalan (Thala),1990,1993,36,Growth,30,4,1,true,false,30,19,55,false,false
+Ajith,2001,Citizen,Citizen/Subramani,1990,1993,36,Growth,31,4,0,true,false,30,19,55,false,false
+Ajith,2001,Poovellam Un Vasam,Chinna,1990,1993,36,Growth,32,4,0,true,false,30,19,55,false,false
+Ajith,2001,Asoka,Susima,1990,1993,36,Growth,33,4,0,true,true,30,19,55,false,false
+Ajith,2002,Red,Red,1990,1993,36,Growth,34,3,1,true,false,31,19,55,false,false
+Ajith,2002,Raja,Raja,1990,1993,36,Growth,35,3,0,true,false,31,19,55,false,false
+Ajith,2002,Villain,Shiva/Vishnu,1990,1993,36,Growth,36,3,0,true,false,31,19,55,false,false
+Ajith,2003,Ennai Thalatta Varuvala,Sathish,1990,1993,36,Growth,37,2,1,true,true,32,19,55,false,false
+Ajith,2003,Anjaneya,Paramaguru,1990,1993,36,Growth,38,2,0,true,false,32,19,55,false,false
+Ajith,2004,Jana,Janarthanan,1990,1993,36,Growth,39,2,1,true,false,33,19,55,false,false
+Ajith,2004,Attahasam,Guru/Jeeva,1990,1993,36,Growth,40,2,0,true,false,33,19,55,false,false
+Ajith,2005,Ji,Vasu,1990,1993,36,Growth,41,1,1,false,false,34,19,55,false,false
+Ajith,2006,Paramasivan,Subramaniyam Siva (Paramasivan),1990,1993,36,Peak,42,3,1,true,false,35,19,55,false,false
+Ajith,2006,Thirupathi,Thirupathi,1990,1993,36,Peak,43,3,0,true,false,35,19,55,false,false
+Ajith,2006,Varalaru,Shivashankar /Vishnu / Jeeva,1990,1993,36,Peak,44,3,0,true,false,35,19,55,false,false
+Ajith,2007,Aalwar,Shiva,1990,1993,36,Peak,45,3,1,true,false,36,19,55,false,false
+Ajith,2007,Kireedam,Sakthivel,1990,1993,36,Peak,46,3,0,true,false,36,19,55,false,false
+Ajith,2007,Billa,David Billa / Saravanavelu,1990,1993,36,Peak,47,3,0,true,false,36,19,55,false,false
+Ajith,2008,Aegan,Shiva,1990,1993,36,Peak,48,1,1,false,false,37,19,55,false,false
+Ajith,2010,Aasal,Jeevanantham / Shiva,1990,1993,36,Peak,49,1,2,false,false,39,19,55,false,false
+Ajith,2011,Mankatha,Vinayak Mahadev,1990,1993,36,Peak,50,1,1,false,true,40,19,55,false,false
+Ajith,2012,Billa II,David Billa,1990,1993,36,Peak,51,2,1,true,false,41,19,55,false,false
+Ajith,2012,English Vinglish,A flight passenger,1990,1993,36,Peak,52,2,0,true,true,41,19,55,false,false
+Ajith,2013,Arrambam,Ashok Kumar,1990,1993,36,Peak,53,1,1,false,false,42,19,55,false,false
+Ajith,2014,Veeram,Vinayagam,1990,1993,36,Peak,54,1,1,false,false,43,19,55,false,false
+Ajith,2015,Yennai Arindhaal,Sathyadev,1990,1993,36,Peak,55,2,1,true,false,44,19,55,false,false
+Ajith,2015,Vedalam,Ganesh (Vedalam),1990,1993,36,Peak,56,2,0,true,false,44,19,55,false,false
+Ajith,2017,Vivegam,Ajay Kumar (AK),1990,1993,36,Peak,57,1,2,false,false,46,19,55,false,false
+Ajith,2019,Viswasam,Thookku Durai,1990,1993,36,Peak,58,2,2,true,false,48,19,55,false,false
+Ajith,2019,Nerkonda Paarvai,Bharath Subramaniam,1990,1993,36,Peak,59,2,0,true,false,48,19,55,false,false
+Ajith,2022,Valimai,Arjun Kumar,1990,1993,36,Peak,60,1,3,false,false,51,19,55,false,false
+Ajith,2023,Thunivu,Dark Devil,1990,1993,36,Peak,61,1,1,false,false,52,19,55,false,false
+Ajith,2025,Vidaamuyarchi,Arjun,1990,1993,36,Peak,62,2,2,true,false,54,19,55,false,true
+Ajith,2025,Good Bad Ugly,AK (Red Dragon),1990,1993,36,Peak,63,2,0,true,false,54,19,55,false,true
+Vijay,1984,Vetri,Vijay,1984,1992,42,Early,1,2,0,true,false,10,10,52,true,false
+Vijay,1984,Kudumbam,Narada,1984,1992,42,Early,2,2,0,true,false,10,10,52,true,false
+Vijay,1985,Naan Sigappu Manithan,Unnamed,1984,1992,42,Early,3,1,1,false,false,11,10,52,true,false
+Vijay,1986,Vasantha Raagam,Vijay,1984,1992,42,Early,4,1,1,false,false,12,10,52,true,false
+Vijay,1987,Sattam Oru Vilayattu,Raja,1984,1992,42,Early,5,1,1,false,false,13,10,52,true,false
+Vijay,1988,Ithu Engal Neethi,Vijay,1984,1992,42,Early,6,1,1,false,false,14,10,52,true,false
+Vijay,1992,Naalaiya Theerpu,Vijay,1984,1992,42,Growth,7,1,4,false,true,18,10,52,false,false
+Vijay,1993,Senthoorapandi,Vijay,1984,1992,42,Growth,8,1,1,false,false,19,10,52,false,false
+Vijay,1994,Rasigan,Vijay,1984,1992,42,Growth,9,1,1,false,false,20,10,52,false,false
+Vijay,1995,Deva,Deva,1984,1992,42,Growth,10,4,1,true,false,21,10,52,false,false
+Vijay,1995,Rajavin Parvaiyile,Raja,1984,1992,42,Growth,11,4,0,true,false,21,10,52,false,false
+Vijay,1995,Vishnu,Vishnu (Krishna),1984,1992,42,Growth,12,4,0,true,false,21,10,52,false,false
+Vijay,1995,Chandralekha,Rahim Rowther,1984,1992,42,Growth,13,4,0,true,false,21,10,52,false,false
+Vijay,1996,Coimbatore Mappillai,Balu,1984,1992,42,Growth,14,5,1,true,false,22,10,52,false,false
+Vijay,1996,Poove Unakkaga,Raja,1984,1992,42,Growth,15,5,0,true,false,22,10,52,false,false
+Vijay,1996,Vasantha Vaasal,Vijay,1984,1992,42,Growth,16,5,0,true,false,22,10,52,false,false
+Vijay,1996,Maanbumigu Maanavan,Sivaraj,1984,1992,42,Growth,17,5,0,true,false,22,10,52,false,false
+Vijay,1996,Selva,Selvan,1984,1992,42,Growth,18,5,0,true,false,22,10,52,false,false
+Vijay,1997,Kaalamellam Kaathiruppen,Kannan,1984,1992,42,Growth,19,5,1,true,false,23,10,52,false,false
+Vijay,1997,Love Today,Ganesh,1984,1992,42,Growth,20,5,0,true,false,23,10,52,false,false
+Vijay,1997,Once More,Vijay,1984,1992,42,Growth,21,5,0,true,false,23,10,52,false,false
+Vijay,1997,Nerrukku Ner,Vijay,1984,1992,42,Growth,22,5,0,true,false,23,10,52,false,false
+Vijay,1997,Kadhalukku Mariyadhai,Jeevanandham (Jeeva),1984,1992,42,Growth,23,5,0,true,false,23,10,52,false,false
+Vijay,1998,Ninaithen Vandhai,Gokulakrishnan,1984,1992,42,Growth,24,3,1,true,false,24,10,52,false,false
+Vijay,1998,Priyamudan,Vasanth,1984,1992,42,Growth,25,3,0,true,false,24,10,52,false,false
+Vijay,1998,Nilaave Vaa,Siluvai,1984,1992,42,Growth,26,3,0,true,false,24,10,52,false,false
+Vijay,1999,Thullatha Manamum Thullum,Kutty,1984,1992,42,Growth,27,4,1,true,false,25,10,52,false,false
+Vijay,1999,Endrendrum Kadhal,Vijay,1984,1992,42,Growth,28,4,0,true,false,25,10,52,false,false
+Vijay,1999,Nenjinile,Karunakaran (Karna),1984,1992,42,Growth,29,4,0,true,false,25,10,52,false,false
+Vijay,1999,Minsara Kanna,Kannan (Kasi),1984,1992,42,Growth,30,4,0,true,false,25,10,52,false,false
+Vijay,2000,Kannukkul Nilavu,Gautham Prabhakar,1984,1992,42,Peak,31,3,1,true,true,26,10,52,false,false
+Vijay,2000,Kushi,Shiva,1984,1992,42,Peak,32,3,0,true,false,26,10,52,false,false
+Vijay,2000,Priyamaanavale,Vijay Vishwanathan,1984,1992,42,Peak,33,3,0,true,false,26,10,52,false,false
+Vijay,2001,Friends,Aravindhan,1984,1992,42,Peak,34,3,1,true,false,27,10,52,false,false
+Vijay,2001,Badri,Sri Badrinatha Moorthy (Badri),1984,1992,42,Peak,35,3,0,true,false,27,10,52,false,false
+Vijay,2001,Shahjahan,Ashok,1984,1992,42,Peak,36,3,0,true,false,27,10,52,false,false
+Vijay,2002,Thamizhan,C. J. Surya,1984,1992,42,Peak,37,3,1,true,false,28,10,52,false,false
+Vijay,2002,Youth,Shiva,1984,1992,42,Peak,38,3,0,true,false,28,10,52,false,false
+Vijay,2002,Bagavathi,Bhagavathi,1984,1992,42,Peak,39,3,0,true,false,28,10,52,false,false
+Vijay,2003,Vaseegara,Boopathi,1984,1992,42,Peak,40,3,1,true,false,29,10,52,false,false
+Vijay,2003,Pudhiya Geethai,Sarathy,1984,1992,42,Peak,41,3,0,true,false,29,10,52,false,false
+Vijay,2003,Thirumalai,Thirumalai,1984,1992,42,Peak,42,3,0,true,false,29,10,52,false,false
+Vijay,2004,Udhaya,Udhayakumaran (Udhaya),1984,1992,42,Peak,43,3,1,true,false,30,10,52,false,false
+Vijay,2004,Ghilli,"Saravanavelu (Velu, Ghilli)",1984,1992,42,Peak,44,3,0,true,false,30,10,52,false,false
+Vijay,2004,Madhurey,Maduravel (Madhurey),1984,1992,42,Peak,45,3,0,true,false,30,10,52,false,false
+Vijay,2005,Thirupaachi,Sivagiri (Giri),1984,1992,42,Peak,46,4,1,true,false,31,10,52,false,false
+Vijay,2005,Sukran,Sukran,1984,1992,42,Peak,47,4,0,true,true,31,10,52,false,false
+Vijay,2005,Sachein,Sachein,1984,1992,42,Peak,48,4,0,true,false,31,10,52,false,false
+Vijay,2005,Sivakasi,Muthappa (Sivakasi),1984,1992,42,Peak,49,4,0,true,false,31,10,52,false,false
+Vijay,2006,Aathi,Aathikesavan,1984,1992,42,Peak,50,1,1,false,false,32,10,52,false,false
+Vijay,2007,Pokkiri,Sathyamoorthy (Thamizh),1984,1992,42,Peak,51,2,1,true,false,33,10,52,false,false
+Vijay,2007,Azhagiya Tamil Magan,"Guru, Prasad",1984,1992,42,Peak,52,2,0,true,false,33,10,52,false,false
+Vijay,2008,Kuruvi,"Vetrivel (Velu, Kuruvi)",1984,1992,42,Peak,53,2,1,true,false,34,10,52,false,false
+Vijay,2008,Pandhayam,Himself,1984,1992,42,Peak,54,2,0,true,true,34,10,52,false,false
+Vijay,2009,Villu,"Pugazh, Saravanan",1984,1992,42,Peak,55,2,1,true,false,35,10,52,false,false
+Vijay,2009,Vettaikaaran,"""Police"" Ravi",1984,1992,42,Peak,56,2,0,true,false,35,10,52,false,false
+Vijay,2010,Sura,Sura,1984,1992,42,Peak,57,1,1,false,true,36,10,52,false,false
+Vijay,2011,Kaavalan,Bhoominathan,1984,1992,42,Peak,58,2,1,true,false,37,10,52,false,false
+Vijay,2011,Velayudham,Velu (Velayudham),1984,1992,42,Peak,59,2,0,true,false,37,10,52,false,false
+Vijay,2012,Nanban,Kosaksi Pasapugazh (Panchavan Parivendan),1984,1992,42,Peak,60,3,1,true,false,38,10,52,false,false
+Vijay,2012,Rowdy Rathore,Himself,1984,1992,42,Peak,61,3,0,true,true,38,10,52,false,false
+Vijay,2012,Thuppakki,Jagadish Dhanapal,1984,1992,42,Peak,62,3,0,true,false,38,10,52,false,false
+Vijay,2013,Thalaivaa,Vishwa Ramadorai (Vishwa Bhai),1984,1992,42,Peak,63,1,1,false,false,39,10,52,false,false
+Vijay,2014,Jilla,DCP Shakthi Aarumugam,1984,1992,42,Peak,64,2,1,true,false,40,10,52,false,false
+Vijay,2014,Kaththi,"Kathiresan (Kaththi), Jeevanandham",1984,1992,42,Peak,65,2,0,true,false,40,10,52,false,false
+Vijay,2015,Puli,"Marudheeran, Pulivendhan",1984,1992,42,Peak,66,1,1,false,false,41,10,52,false,false
+Vijay,2016,Theri,"A. Vijay Kumar (Joseph Kuruvilla, Dharmeshwar)",1984,1992,42,Peak,67,1,1,false,false,42,10,52,false,false
+Vijay,2017,Bairavaa,Bairavaa,1984,1992,42,Peak,68,2,1,true,false,43,10,52,false,false
+Vijay,2017,Mersal,"Vetri, Maaran, Vetrimaaran",1984,1992,42,Peak,69,2,0,true,false,43,10,52,false,false
+Vijay,2018,Sarkar,Sundar Ramaswamy,1984,1992,42,Peak,70,1,1,false,false,44,10,52,false,false
+Vijay,2019,Bigil,"Michael Rayappan (Bigil), Rayappan",1984,1992,42,Peak,71,1,1,false,false,45,10,52,false,false
+Vijay,2021,Master,JD (John Durairaj),1984,1992,42,Peak,72,1,2,false,false,47,10,52,false,false
+Vijay,2022,Beast,Veera Raghavan,1984,1992,42,Peak,73,1,1,false,false,48,10,52,false,false
+Vijay,2023,Varisu,Vijay Rajendran,1984,1992,42,Peak,74,2,1,true,false,49,10,52,false,false
+Vijay,2023,Leo,Parthiban/Leo Das,1984,1992,42,Peak,75,2,0,true,false,49,10,52,false,false
+Vijay,2024,The Greatest Of All Time,"M.S. Gandhi, Jeevan Gandhi (Sanjay Menon)",1984,1992,42,Peak,76,1,1,false,false,50,10,52,false,false
+Vijay,2026,Jana Nayagan,Thalapathy Vetri Kondan,1984,1992,42,Peak,77,1,2,false,false,52,10,52,false,true
