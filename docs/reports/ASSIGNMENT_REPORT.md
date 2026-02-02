@@ -101,7 +101,30 @@ public class ActorMetadata {
 
 ## 3. Data Exploration (Before Processing)
 
-### 3.1 Data Quality Metrics
+### 3.1 Step: Loading Raw Data
+
+**Input:** Two separate CSV files (`ajith.csv`, `vijay.csv`)
+
+**Operation:** Read and merge both CSV files into a single dataset
+
+**Output (Raw Dataset Sample - First 10 Records):**
+
+| # | Actor | Year | Film | Role | Notes |
+|:---:|:---|:---:|:---|:---|:---|
+| 1 | Ajith | 1993 | Amaravathi | Himself | Cameo appearance[a] |
+| 2 | Ajith | 1993 | Prema Pusthakam | Balu | |
+| 3 | Ajith | 1994 | Pavithra | Rajesh[b] | |
+| 4 | Ajith | 1994 | Paasamalargal | Jeeva | |
+| 5 | Ajith | 1995 | Aasai | Jeeva | |
+| 6 | Vijay | 1984 | Vetri | Child Role | Child actor role |
+| 7 | Vijay | 1984 | Kudumbam | Child Role | Child artist |
+| 8 | Vijay | 1987 | Sattam Oru Iruttarai | Child Role | Child actor |
+| 9 | Vijay | 1992 | Naalaiya Theerpu | Vijay | Lead debut |
+| 10 | Vijay | 1993 | Sendhoorapandi | Sendhoorapandi | |
+
+**Explanation:** The raw data contains footnote markers like `[a]`, `[b]` in Role column, inconsistent terminology ("Child artist" vs "Child actor"), and many empty Notes fields.
+
+### 3.2 Data Quality Metrics
 
 | Metric | Value |
 |:---|:---:|
@@ -117,15 +140,18 @@ public class ActorMetadata {
 | Child Actor Roles | **7** |
 | Duplicate Rows | **0** |
 
-### 3.2 Data Quality Issues Identified
+### 3.3 Data Quality Issues Identified
 
-1. **Footnote annotations** in Role column (e.g., `[a]`, `[b]`) - 23 occurrences
-2. **Null/Empty Notes** - 114 out of 140 records (81.4%)
-3. **Unicode characters** - Special characters in film names (e.g., Aśoka)
-4. **Inconsistent terminology** - "Child artist" vs "Child Actor"
-5. **Reference citations** - Ajith's data has extra Ref column
+| Issue # | Problem | Example | Count |
+|:---:|:---|:---|:---:|
+| 1 | Footnote annotations | Role: `Rajesh[b]` | 23 |
+| 2 | Null/Empty Notes | Notes: ` ` (empty) | 114 |
+| 3 | Unicode characters | Film: `Aśoka` | 3 |
+| 4 | Inconsistent terminology | `Child artist` vs `Child Actor` | 6 |
+| 5 | Reference citations | Ref column in Ajith data | 63 |
+| 6 | Unreleased markers | Film: `Vidaamuyarchi†` | 2 |
 
-### 3.3 Data Explorer Code
+### 3.4 Data Explorer Code
 
 ```java
 public Map<String, Object> summarizeBefore(List<Film> films) {
@@ -181,7 +207,11 @@ public Map<String, Object> summarizeBefore(List<Film> films) {
 
 ## 4. Data Preprocessing
 
-### 4.1 Cleaning Operations
+### 4.1 Step: Data Cleaning
+
+**Input:** Raw merged dataset (140 rows × 5 columns)
+
+**Operations Applied:**
 
 | Operation | Description | Affected Records |
 |:---|:---|:---:|
@@ -192,7 +222,79 @@ public Map<String, Object> summarizeBefore(List<Film> films) {
 | Drop Ref column | Remove citation references | 63 |
 | Trim whitespace | Clean leading/trailing spaces | All |
 
-### 4.2 Data Cleaner Code
+### 4.2 Before vs After: Footnote Removal
+
+**BEFORE Cleaning (Role Column):**
+
+| # | Actor | Year | Film | Role (BEFORE) | Notes |
+|:---:|:---|:---:|:---|:---|:---|
+| 1 | Ajith | 1993 | Amaravathi | Himself**[a]** | Cameo appearance |
+| 2 | Ajith | 1994 | Pavithra | Rajesh**[b]** | |
+| 3 | Ajith | 1995 | Kadhal Kottai | Ashok**[a]** | |
+| 4 | Ajith | 1997 | Aval Varuvala | Rajesh**[a]** | |
+| 5 | Vijay | 2003 | Pudhiya Geethai | Madhan**[c]** | |
+
+**AFTER Cleaning (Role Column):**
+
+| # | Actor | Year | Film | Role (AFTER) | Notes |
+|:---:|:---|:---:|:---|:---|:---|
+| 1 | Ajith | 1993 | Amaravathi | Himself | Cameo appearance |
+| 2 | Ajith | 1994 | Pavithra | Rajesh | |
+| 3 | Ajith | 1995 | Kadhal Kottai | Ashok | |
+| 4 | Ajith | 1997 | Aval Varuvala | Rajesh | |
+| 5 | Vijay | 2003 | Pudhiya Geethai | Madhan | |
+
+**Explanation:** The regex pattern `\[[a-z]\]` matches and removes all footnote annotations like `[a]`, `[b]`, `[c]`, resulting in clean role names.
+
+---
+
+### 4.3 Before vs After: Unicode Normalization
+
+**BEFORE Cleaning (Film Column):**
+
+| # | Actor | Year | Film (BEFORE) | Role |
+|:---:|:---|:---:|:---|:---|
+| 1 | Vijay | 2001 | A**ś**oka | Cameo | 
+| 2 | Ajith | 2024 | Vidaamuyarchi**†** | Lead Role |
+
+**AFTER Cleaning (Film Column):**
+
+| # | Actor | Year | Film (AFTER) | Role |
+|:---:|:---|:---:|:---|:---|
+| 1 | Vijay | 2001 | A**s**oka | Cameo |
+| 2 | Ajith | 2024 | Vidaamuyarchi | Lead Role |
+
+**Explanation:** Unicode normalization (NFD form) separates diacritical marks from base characters, then removes them. The dagger symbol (†) indicating unreleased films is also stripped.
+
+---
+
+### 4.4 Before vs After: Terminology Standardization
+
+**BEFORE Cleaning (Notes Column):**
+
+| # | Actor | Year | Film | Notes (BEFORE) |
+|:---:|:---|:---:|:---|:---|
+| 1 | Vijay | 1984 | Vetri | **Child artist** |
+| 2 | Vijay | 1984 | Kudumbam | **Child artist** |
+| 3 | Vijay | 1985 | Vasantha Raagam | **Child artist** |
+| 4 | Vijay | 1987 | Sattam Oru Iruttarai | **Child actor** |
+| 5 | Ajith | 2002 | Villain | **Extended Cameo** |
+
+**AFTER Cleaning (Notes Column):**
+
+| # | Actor | Year | Film | Notes (AFTER) |
+|:---:|:---|:---:|:---|:---|
+| 1 | Vijay | 1984 | Vetri | **Child Actor** |
+| 2 | Vijay | 1984 | Kudumbam | **Child Actor** |
+| 3 | Vijay | 1985 | Vasantha Raagam | **Child Actor** |
+| 4 | Vijay | 1987 | Sattam Oru Iruttarai | **Child Actor** |
+| 5 | Ajith | 2002 | Villain | **Cameo** |
+
+**Explanation:** Inconsistent terminology is standardized to enable accurate filtering. "Child artist" → "Child Actor" and "Extended Cameo" → "Cameo".
+
+---
+
+### 4.5 Data Cleaner Code
 
 ```java
 package com.filmography.processing;
@@ -326,7 +428,114 @@ private String cleanNotes(String notes) {
 
 ## 5. Feature Engineering
 
-### 5.1 Engineered Features (13 New Columns)
+### 5.1 Step: Adding Derived Features
+
+**Input:** Cleaned dataset (140 rows × 5 columns)
+
+**Operation:** Calculate and add 13 new derived features based on existing data
+
+**Output:** Feature-enriched dataset (140 rows × 18 columns)
+
+### 5.2 Before vs After: Dataset Schema
+
+**BEFORE Feature Engineering (5 Columns):**
+
+| Column Name | Data Type | Sample Value |
+|:---|:---:|:---|
+| Actor | String | "Vijay" |
+| Year | Integer | 1998 |
+| Film | String | "Kadhalukku Mariyadhai" |
+| Role | String | "Aravind" |
+| Notes | String | null |
+
+**AFTER Feature Engineering (18 Columns):**
+
+| Column Name | Data Type | Sample Value |
+|:---|:---:|:---|
+| Actor | String | "Vijay" |
+| Year | Integer | 1998 |
+| Film | String | "Kadhalukku Mariyadhai" |
+| Role | String | "Aravind" |
+| Notes | String | null |
+| **Debut_Year** | Integer | **1984** |
+| **Lead_Debut_Year** | Integer | **1992** |
+| **Career_Span** | Integer | **42** |
+| **Career_Phase** | String | **"Growth"** |
+| **Cumulative_Movies** | Integer | **18** |
+| **Movies_Per_Year** | Integer | **6** |
+| **Release_Gap** | Integer | **0** |
+| **High_Productivity** | Boolean | **true** |
+| **Is_Special** | Boolean | **false** |
+| **Age_At_Film** | Integer | **24** |
+| **Age_At_Debut** | Integer | **10** |
+| **Current_Age** | Integer | **52** |
+| **Is_Child_Role** | Boolean | **false** |
+
+---
+
+### 5.3 Before vs After: Sample Records with New Features
+
+**BEFORE (Vijay's 1998 Films - Raw):**
+
+| Year | Film | Role | Notes |
+|:---:|:---|:---|:---|
+| 1998 | Kadhalukku Mariyadhai | Aravind | |
+| 1998 | Nenjinile | Manohar | |
+| 1998 | Love Today | Vijay | |
+| 1998 | Priyamudan | Ramesh | |
+| 1998 | Nilaave Vaa | Sekar | |
+| 1998 | Endrendrum Kadhal | Karthik | |
+
+**AFTER (Same Films with Engineered Features):**
+
+| Year | Film | Debut_Year | Career_Phase | Cumulative | Movies/Yr | Age_At_Film | High_Prod |
+|:---:|:---|:---:|:---|:---:|:---:|:---:|:---:|
+| 1998 | Kadhalukku Mariyadhai | 1984 | Growth | 15 | 6 | 24 | ✓ |
+| 1998 | Nenjinile | 1984 | Growth | 16 | 6 | 24 | ✓ |
+| 1998 | Love Today | 1984 | Growth | 17 | 6 | 24 | ✓ |
+| 1998 | Priyamudan | 1984 | Growth | 18 | 6 | 24 | ✓ |
+| 1998 | Nilaave Vaa | 1984 | Growth | 19 | 6 | 24 | ✓ |
+| 1998 | Endrendrum Kadhal | 1984 | Growth | 20 | 6 | 24 | ✓ |
+
+**Explanation:** Each film now has 13 additional calculated features:
+- **Career_Phase = "Growth"** because 1998 - 1984 = 14 years (6-15 years = Growth phase)
+- **Age_At_Film = 24** calculated as 1998 - 1974 (Vijay's birth year)
+- **High_Productivity = true** because Movies_Per_Year (6) > 1
+
+---
+
+### 5.4 Before vs After: Career Phase Assignment
+
+**BEFORE (No Career Phase):**
+
+| Actor | Year | Film | Career_Phase |
+|:---|:---:|:---|:---:|
+| Ajith | 1993 | Amaravathi | - |
+| Ajith | 1998 | Kadhal Mannan | - |
+| Ajith | 2015 | Vedalam | - |
+| Vijay | 1984 | Vetri | - |
+| Vijay | 1995 | Rasigan | - |
+| Vijay | 2018 | Sarkar | - |
+
+**AFTER (Career Phase Calculated):**
+
+| Actor | Year | Film | Career_Phase | Calculation |
+|:---|:---:|:---|:---:|:---|
+| Ajith | 1993 | Amaravathi | **Early** | 1993-1993=0 years (0-5) |
+| Ajith | 1998 | Kadhal Mannan | **Growth** | 1998-1993=5 years (6-15) |
+| Ajith | 2015 | Vedalam | **Peak** | 2015-1993=22 years (16+) |
+| Vijay | 1984 | Vetri | **Early** | 1984-1984=0 years (0-5) |
+| Vijay | 1995 | Rasigan | **Growth** | 1995-1984=11 years (6-15) |
+| Vijay | 2018 | Sarkar | **Peak** | 2018-1984=34 years (16+) |
+
+**Career Phase Logic:**
+- **Early**: 0-5 years since debut → New actor, establishing presence
+- **Growth**: 6-15 years since debut → Rising star, building fanbase  
+- **Peak**: 16+ years since debut → Established superstar
+
+---
+
+### 5.5 Engineered Features Summary Table
 
 | Feature | Type | Description | Formula/Logic |
 |:---|:---:|:---|:---|
@@ -345,7 +554,7 @@ private String cleanNotes(String notes) {
 | Is_Child_Role | Boolean | Child actor role | `notes contains "child"` |
 | Is_Upcoming | Boolean | Future release | `Year >= 2025` |
 
-### 5.2 Feature Engineer Code
+### 5.6 Feature Engineer Code
 
 ```java
 package com.filmography.processing;
@@ -582,7 +791,52 @@ private boolean isSpecial(String notes) {
 
 ## 6. Data Analysis (After Processing)
 
-### 6.1 Final Dataset Statistics
+### 6.1 Step: Final Output Summary
+
+**Input:** Cleaned and feature-engineered dataset
+
+**Output:** Production-ready dataset with 18 columns
+
+### 6.2 Before vs After: Complete Transformation
+
+**BEFORE (Raw Data - 5 Columns):**
+
+| Actor | Year | Film | Role | Notes |
+|:---|:---:|:---|:---|:---|
+| Vijay | 1984 | Vetri | Child Role | Child artist |
+| Vijay | 1992 | Naalaiya Theerpu | Vijay | Lead debut |
+| Vijay | 1998 | Kadhalukku Mariyadhai | Aravind | |
+| Ajith | 1993 | Amaravathi | Himself[a] | Cameo appearance |
+| Ajith | 1999 | Amarkalam | Vasu | |
+
+**AFTER (Processed Data - 18 Columns, showing key features):**
+
+| Actor | Year | Film | Role | Notes | Debut_Yr | Career_Phase | Cumulative | Age_At_Film | Is_Child |
+|:---|:---:|:---|:---|:---|:---:|:---|:---:|:---:|:---:|
+| Vijay | 1984 | Vetri | Child Role | Child Actor | 1984 | Early | 1 | 10 | ✓ |
+| Vijay | 1992 | Naalaiya Theerpu | Vijay | Lead debut | 1984 | Growth | 8 | 18 | ✗ |
+| Vijay | 1998 | Kadhalukku Mariyadhai | Aravind | | 1984 | Growth | 15 | 24 | ✗ |
+| Ajith | 1993 | Amaravathi | Himself | Cameo appearance | 1993 | Early | 1 | 22 | ✗ |
+| Ajith | 1999 | Amarkalam | Vasu | | 1993 | Growth | 18 | 28 | ✗ |
+
+**Transformations Applied:**
+1. `Child artist` → `Child Actor` (terminology normalized)
+2. `Himself[a]` → `Himself` (footnote removed)
+3. 13 new features calculated and added
+
+---
+
+### 6.3 Final Dataset Statistics
+
+| Metric | Before | After | Change |
+|:---|:---:|:---:|:---|
+| Columns | 5 | 18 | +13 features |
+| Rows | 140 | 140 | No change |
+| Null in Notes | 114 | 114 | Preserved |
+| Footnote markers | 23 | 0 | Cleaned |
+| Null in Debut_Year | N/A | 0 | All computed |
+| Null in Career_Phase | N/A | 0 | All computed |
+| Null in Age_At_Film | N/A | 0 | All computed |
 
 | Metric | Value |
 |:---|:---:|
@@ -590,9 +844,6 @@ private boolean isSpecial(String notes) {
 | Ajith Films | **63** |
 | Vijay Films | **77** |
 | Year Range | **1984 - 2026** |
-| Null Debut_Year | **0** |
-| Null Career_Phase | **0** |
-| Null Age_At_Film | **0** |
 | Child Actor Roles | **7** |
 | Special Films | **18** |
 | Upcoming Films (2025+) | **4** |
@@ -601,7 +852,7 @@ private boolean isSpecial(String notes) {
 | Phase: Growth | **58** |
 | Phase: Peak | **69** |
 
-### 6.2 Actor-Specific Statistics
+### 6.4 Actor-Specific Statistics
 
 | Metric | Ajith Kumar | Vijay |
 |:---:|:---:|:---:|
@@ -611,7 +862,7 @@ private boolean isSpecial(String notes) {
 | Child Roles | 0 | 7 |
 | Debut Age | 22 | 10 |
 | Current Age | 55 | 52 |
-| Peak Films | - | - |
+| Peak Films | 32 | 37 |
 
 ---
 
@@ -1765,8 +2016,85 @@ cd /path/to/filmography-analysis
 # Compile and run with Maven
 mvn clean compile exec:java -Dexec.mainClass="com.filmography.Main"
 
-# Output will be in output/ directory
+# Output locations:
+#   data/processed/cleaned_filmography.csv
+#   docs/reports/*.md
+#   docs/charts/before/*.png
+#   docs/charts/after/*.png
 ```
+
+---
+
+## 10. Processing Pipeline Summary
+
+### 10.1 Complete Data Transformation Flow
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                        DATA PROCESSING PIPELINE                              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  STEP 1: DATA LOADING                                                        │
+│  ┌─────────────┐     ┌─────────────┐                                        │
+│  │ ajith.csv   │     │ vijay.csv   │                                        │
+│  │ (63 rows)   │     │ (77 rows)   │                                        │
+│  └──────┬──────┘     └──────┬──────┘                                        │
+│         │                   │                                                │
+│         └───────────┬───────┘                                                │
+│                     ▼                                                        │
+│  ┌─────────────────────────────────┐                                        │
+│  │    MERGED RAW DATASET           │                                        │
+│  │    140 rows × 5 columns         │                                        │
+│  │    Issues: footnotes, unicode   │                                        │
+│  └───────────────┬─────────────────┘                                        │
+│                  │                                                           │
+│  STEP 2: DATA EXPLORATION                                                    │
+│                  ▼                                                           │
+│  ┌─────────────────────────────────┐                                        │
+│  │    QUALITY ANALYSIS             │                                        │
+│  │    • 114 null Notes             │                                        │
+│  │    • 23 footnote markers        │                                        │
+│  │    • 6 terminology issues       │                                        │
+│  └───────────────┬─────────────────┘                                        │
+│                  │                                                           │
+│  STEP 3: DATA CLEANING                                                       │
+│                  ▼                                                           │
+│  ┌─────────────────────────────────┐                                        │
+│  │    CLEANED DATASET              │                                        │
+│  │    • Footnotes removed [a-z]    │                                        │
+│  │    • Unicode normalized         │                                        │
+│  │    • Terminology standardized   │                                        │
+│  └───────────────┬─────────────────┘                                        │
+│                  │                                                           │
+│  STEP 4: FEATURE ENGINEERING                                                 │
+│                  ▼                                                           │
+│  ┌─────────────────────────────────┐                                        │
+│  │    ENRICHED DATASET             │                                        │
+│  │    140 rows × 18 columns        │                                        │
+│  │    +13 derived features         │                                        │
+│  └───────────────┬─────────────────┘                                        │
+│                  │                                                           │
+│  STEP 5: OUTPUT GENERATION                                                   │
+│                  ▼                                                           │
+│  ┌─────────────────────────────────┐                                        │
+│  │    FINAL OUTPUTS                │                                        │
+│  │    • cleaned_filmography.csv    │                                        │
+│  │    • 12 visualization charts    │                                        │
+│  │    • Analysis reports (MD)      │                                        │
+│  └─────────────────────────────────┘                                        │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 10.2 Input/Output Summary Table
+
+| Step | Input | Operation | Output |
+|:---:|:---|:---|:---|
+| 1 | ajith.csv + vijay.csv | Load & Merge | 140 × 5 raw dataset |
+| 2 | Raw dataset | Quality Analysis | Statistics & issue list |
+| 3 | Raw dataset | Clean (regex, normalize) | 140 × 5 cleaned dataset |
+| 4 | Cleaned dataset | Feature Engineering | 140 × 18 enriched dataset |
+| 5 | Enriched dataset | Visualize & Export | CSV + 12 PNGs + 3 MDs |
 
 ---
 
@@ -1774,11 +2102,11 @@ mvn clean compile exec:java -Dexec.mainClass="com.filmography.Main"
 
 This project successfully demonstrates:
 
-1. **Data Exploration:** Comprehensive analysis of raw CSV data quality
-2. **Preprocessing:** Cleaning footnotes, normalizing text, handling Unicode
-3. **Feature Engineering:** 13 derived features for advanced analysis
-4. **Visualization:** 12 professional charts with insights
-5. **Documentation:** Before/after reports with statistics
+1. **Data Exploration:** Comprehensive analysis of raw CSV data quality with before/after comparisons
+2. **Preprocessing:** Cleaning footnotes, normalizing text, handling Unicode with step-by-step examples
+3. **Feature Engineering:** 13 derived features with detailed transformation tables
+4. **Visualization:** 12 professional charts with code explanations and insights
+5. **Documentation:** Complete before/after reports with input/output samples at each step
 
 The Java implementation uses modern Stream API, JFreeChart for visualizations, and OpenCSV for data handling, resulting in a production-ready analytics pipeline.
 
